@@ -4,11 +4,38 @@ import { environment } from './environments/environment';
 
 import { AppModule } from './app/app.module';
 
+let cordova;
+
 if (environment.production) {
   enableProdMode();
 }
 
-platformBrowserDynamic().bootstrapModule(AppModule);
+
+let onDeviceReady = () => {
+  platformBrowserDynamic().bootstrapModule(AppModule);
+};
+
+document.addEventListener('deviceready', onDeviceReady, false);
+
+/*
+declare var cordova;
+export function main(): Promise<NgModuleRef<AppModule>>{
+  if(typeof cordova !== 'undefined'){
+    document.addEventListener('deviceready', main, false);
+  } 
+  return platformBrowserDynamic().bootstrapModule(AppModule);
+}
+
+if(document.readyState === 'complete'){
+  platformBrowserDynamic().bootstrapModule(AppModule);
+} else {
+  if(typeof cordova !== 'undefined'){
+    document.addEventListener('deviceready', main, false);
+  } else {
+   document.addEventListener('DOMContentLoaded', main); 
+  }
+}*/
+
 
 
 /*
