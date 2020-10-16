@@ -11,19 +11,18 @@ if (environment.production) {
 }
 
 
-let onDeviceReady = () => {
+// let onDeviceReady = () => {
+//   platformBrowserDynamic().bootstrapModule(AppModule);
+// };
+
+// document.addEventListener('deviceready', onDeviceReady, false);
+
+// declare var cordova;
+export function main(){
   platformBrowserDynamic().bootstrapModule(AppModule);
-};
-
-document.addEventListener('deviceready', onDeviceReady, false);
-
-/*
-declare var cordova;
-export function main(): Promise<NgModuleRef<AppModule>>{
-  if(typeof cordova !== 'undefined'){
-    document.addEventListener('deviceready', main, false);
-  } 
-  return platformBrowserDynamic().bootstrapModule(AppModule);
+}
+if(window['cordova']){
+  platformBrowserDynamic().bootstrapModule(AppModule);
 }
 
 if(document.readyState === 'complete'){
@@ -34,7 +33,7 @@ if(document.readyState === 'complete'){
   } else {
    document.addEventListener('DOMContentLoaded', main); 
   }
-}*/
+}
 
 
 
